@@ -25,8 +25,11 @@ class GirisEkrani extends StatefulWidget {
 }
 
 class _GirisEkraniState extends State<GirisEkrani> {
+  TextEditingController t1 = TextEditingController();
+  TextEditingController t2 = TextEditingController();
   girisYap() {
-    Navigator.pushNamed(context, "/ProfilSayfasiRotasi");
+    Navigator.pushNamed(context, "/ProfilSayfasiRotasi",
+        arguments: VeriModeli(kullaniciAdi: t1.text, sifre: t2.text));
   }
 
   @override
@@ -36,6 +39,12 @@ class _GirisEkraniState extends State<GirisEkrani> {
       body: Container(
         child: Column(
           children: <Widget>[
+            TextFormField(
+              controller: t1,
+            ),
+            TextFormField(
+              controller: t2,
+            ),
             ElevatedButton(onPressed: girisYap, child: Text("Giriş Yap")),
           ],
         ),
@@ -58,6 +67,9 @@ class _ProfilEkraniState extends State<ProfilEkrani> {
 
   @override
   Widget build(BuildContext context) {
+    VeriModeli iletilenArgumanlar =
+        ModalRoute.of(context)!.settings.arguments as VeriModeli;
+
     return Scaffold(
       appBar: AppBar(title: Text("Profil Sayfasi")),
       body: Container(
@@ -66,10 +78,17 @@ class _ProfilEkraniState extends State<ProfilEkrani> {
             ElevatedButton(
               onPressed: cikisYap,
               child: Text("Cikiş Yap"),
-            )
+            ),
+            Text(iletilenArgumanlar.kullaniciAdi),
+            Text(iletilenArgumanlar.sifre),
           ],
         ),
       ),
     );
   }
+}
+
+class VeriModeli {
+  String kullaniciAdi, sifre;
+  VeriModeli({required this.kullaniciAdi, required this.sifre});
 }
