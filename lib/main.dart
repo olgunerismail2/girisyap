@@ -24,6 +24,7 @@ class GirisEkrani extends StatefulWidget {
   State<GirisEkrani> createState() => _GirisEkraniState();
 }
 
+//sayfalar arası geçiş
 class _GirisEkraniState extends State<GirisEkrani> {
   TextEditingController t1 = TextEditingController();
   TextEditingController t2 = TextEditingController();
