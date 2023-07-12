@@ -11,7 +11,7 @@ class MyApp extends StatelessWidget {
       initialRoute: "/",
       routes: {
         "/": (context) => GirisEkrani(),
-        "ProfilSayfasiRotasi": (context) => ProfilEkrani(),
+        "/ProfilSayfasiRotasi": (context) => ProfilEkrani(),
       },
     );
   }
@@ -25,9 +25,22 @@ class GirisEkrani extends StatefulWidget {
 }
 
 class _GirisEkraniState extends State<GirisEkrani> {
+  girisYap() {
+    Navigator.pushNamed(context, "/ProfilSayfasiRotasi");
+  }
+
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Scaffold(
+      appBar: AppBar(title: Text("Giriş Ekrani")),
+      body: Container(
+        child: Column(
+          children: <Widget>[
+            ElevatedButton(onPressed: girisYap, child: Text("Giriş Yap")),
+          ],
+        ),
+      ),
+    );
   }
 }
 
@@ -39,8 +52,24 @@ class ProfilEkrani extends StatefulWidget {
 }
 
 class _ProfilEkraniState extends State<ProfilEkrani> {
+  cikisYap() {
+    Navigator.pop(context);
+  }
+
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Scaffold(
+      appBar: AppBar(title: Text("Profil Sayfasi")),
+      body: Container(
+        child: Column(
+          children: <Widget>[
+            ElevatedButton(
+              onPressed: cikisYap,
+              child: Text("Cikiş Yap"),
+            )
+          ],
+        ),
+      ),
+    );
   }
 }
